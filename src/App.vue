@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import { ref, provide } from 'vue';
 import CreateTodo from './components/CreateTodo.vue';
 import TodoList from './components/TodoList.vue';
-import { ref } from 'vue';
 import type { ITodoList } from "@/types"
 
 const todoList = ref<ITodoList[]>([])
+provide('updateCompletionStatus', updateCompletionStatus)
 
 function addTodo(message: string) {
   const todo = { id: todoList.value.length, message, completed: false }
   todoList.value.push(todo)
 
 }
+
+function updateCompletionStatus(id: number,) {
+  const todo = todoList.value.find(e => e.id === id)
+  console.log(todo);
+
+  if (todo) {
+    todo.completed = !todo.completed
+  }
+
+}
+
 
 </script>
 
