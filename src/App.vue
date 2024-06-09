@@ -8,6 +8,7 @@ const todoList = ref<ITodoList[]>([])
 provide('updateCompletionStatus', updateCompletionStatus)
 
 function addTodo(message: string) {
+  if (!message) return
   const todo = { id: todoList.value.length, message, completed: false }
   todoList.value.push(todo)
 
