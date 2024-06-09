@@ -6,6 +6,7 @@ import type { ITodoList } from "@/types"
 
 const todoList = ref<ITodoList[]>([])
 provide('updateCompletionStatus', updateCompletionStatus)
+provide("deleteTodo", deleteTodo)
 
 function addTodo(message: string) {
   if (!message) return
@@ -23,6 +24,10 @@ function updateCompletionStatus(id: number,) {
 
 }
 
+function deleteTodo(id: number) {
+  todoList.value = todoList.value.filter(e => e.id !== id)
+
+}
 
 </script>
 
