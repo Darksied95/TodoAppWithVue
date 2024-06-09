@@ -13,8 +13,10 @@ const updateCompletionStatus = inject<(e: number) => void>('updateCompletionStat
     <li
         class=" flex items-center  gap-3 bg-d-VeryDarkDesaturatedBlue text-d-LightGrayishBlue h-10 border-b border-b-d-VeryDarkGrayishBlue-50">
         <span
-            class="ml-4 inline-block w-4 aspect-square border border-solid border-d-VeryDarkGrayishBlue rounded-[100%]"
-            @click="updateCompletionStatus(todo.id)"></span>
-        <p class="text-sm">{{ todo.message }}</p>
+            class="ml-4  w-4 aspect-square border border-solid border-d-VeryDarkGrayishBlue rounded-[100%]  flex items-center justify-center"
+            :class="todo.completed && 'bg-checkBackground'" @click="updateCompletionStatus(todo.id)">
+            <img v-if="todo.completed" src="/src/assets/icon-check.svg" class="w-2">
+        </span>
+        <p class="text-sm" :class="todo.completed && 'line-through'">{{ todo.message }}</p>
     </li>
 </template>

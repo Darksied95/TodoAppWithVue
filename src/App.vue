@@ -16,7 +16,6 @@ function addTodo(message: string) {
 
 function updateCompletionStatus(id: number,) {
   const todo = todoList.value.find(e => e.id === id)
-  console.log(todo);
 
   if (todo) {
     todo.completed = !todo.completed
