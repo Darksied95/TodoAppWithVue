@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 
 <script setup lang="ts">
-import type { ITodoList } from '@/types';
+import type { ITodoList, ITodoStore } from '@/types';
 import { inject } from 'vue';
 
 defineProps<{ todo: ITodoList }>()
 
-const updateCompletionStatus = inject<(id: number) => void>('updateCompletionStatus')!
-const deleteTodo = inject<(id: number) => void>('deleteTodo')!
+
+const { updateCompletionStatus, deleteTodo } = inject<ITodoStore>('todoStore')!
 
 </script>
 

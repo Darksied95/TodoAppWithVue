@@ -14,16 +14,15 @@
 </template>
 
 <script setup lang="ts">
-import type { ITodoList } from '@/types';
+import type { ITodoStore } from '@/types';
 import { inject, ref } from 'vue';
 
 const activeField = ref("All")
-console.log(activeField.value);
 
 function updateColor(value: string) {
     return activeField.value === value && 'text-brightBlue'
 }
 
 
-const todoList = inject<ITodoList[]>("todoList", [])
+const { todoList }: ITodoStore = inject("todoStore")!
 </script>

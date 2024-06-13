@@ -7,9 +7,8 @@ import type { ITodoList } from "@/types"
 
 const todoList = ref<ITodoList[]>([])
 
-provide('updateCompletionStatus', updateCompletionStatus)
-provide("deleteTodo", deleteTodo)
-provide("todoList", todoList)
+
+provide('todoStore', { todoList, deleteTodo, clearCompleted, updateCompletionStatus, filterTodos })
 
 function addTodo(message: string) {
   if (!message) return
@@ -32,6 +31,19 @@ function deleteTodo(id: number) {
 
 }
 
+function filterTodos(value: boolean | string) {
+
+  if (typeof value === 'string') {
+    // todoList.value = todoList.value
+    return
+  }
+  todoList.value = todoList.value.filter(e => e.completed === value)
+}
+
+function clearCompleted() {
+  todoList.value = todoList.value.filter(e => !e.completed)
+
+}
 </script>
 
 <template>
