@@ -5,11 +5,12 @@
         class="flex items-center font-semibold bg-d-VeryDarkDesaturatedBlue text-d-LightGrayishBlue h-10 border-b border-b-d-VeryDarkGrayishBlue-50 text-xs p-5">
         <p class="">{{ todoList.length }} item<span v-if="todoList.length">s</span> left</p>
         <ul class="flex-1 flex justify-center gap-3 ">
-            <li v-for="filter in ['All', 'Active', 'Completed']" :key="filter" class="text-d-DarkGrayishBlue "
-                :class="updateColor(filter)" @click="activeField = filter">
+            <li v-for="filter in ['All', 'Active', 'Completed']" :key="filter"
+                class="text-d-DarkGrayishBlue cursor-pointer " :class="updateColor(filter)"
+                @click="activeField = filter; filterTodos(filter)">
                 {{ filter }}</li>
         </ul>
-        <p>Clear Completed</p>
+        <p @click="clearCompleted" class="cursor-pointer">Clear Completed</p>
     </div>
 </template>
 
@@ -24,5 +25,5 @@ function updateColor(value: string) {
 }
 
 
-const { todoList }: ITodoStore = inject("todoStore")!
+const { todoList, filterTodos, clearCompleted }: ITodoStore = inject("todoStore")!
 </script>
