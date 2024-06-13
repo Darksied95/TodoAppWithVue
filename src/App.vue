@@ -2,11 +2,14 @@
 import { ref, provide } from 'vue';
 import CreateTodo from './components/CreateTodo.vue';
 import TodoList from './components/TodoList.vue';
+import Filters from './components/Filters.vue'
 import type { ITodoList } from "@/types"
 
 const todoList = ref<ITodoList[]>([])
+
 provide('updateCompletionStatus', updateCompletionStatus)
 provide("deleteTodo", deleteTodo)
+provide("todoList", todoList)
 
 function addTodo(message: string) {
   if (!message) return
@@ -41,6 +44,7 @@ function deleteTodo(id: number) {
       </header>
       <CreateTodo :addTodo />
       <TodoList :todoListState="todoList" />
+      <Filters />
     </div>
 
   </main>
